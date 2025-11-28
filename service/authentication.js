@@ -1,0 +1,23 @@
+
+export async function createUser(
+  email, password
+) {
+  const response = await fetch('/api/auth/signup', {
+    method: "POST",
+    body: JSON.stringify({
+      email, password
+    }),
+    headers: {
+      "Content-Type": 'application/json',
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to Create User")
+  }
+
+  const data = await response.json();
+
+  return data
+
+}
