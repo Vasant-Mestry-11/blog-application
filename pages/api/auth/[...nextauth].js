@@ -1,7 +1,7 @@
 import { verifyPassword } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
 import NextAuth from "next-auth";
-import Providers from 'next-auth/providers'
+import Providers from 'next-auth/providers/credentials';
 
 
 export default NextAuth({
@@ -9,7 +9,7 @@ export default NextAuth({
     jwt: true,
   },
   providers: [
-    Providers.Credentials({
+    Providers({
       async authorize(credentials) {
         const client = await connectToDatabase();
 
