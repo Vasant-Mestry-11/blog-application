@@ -21,9 +21,23 @@ export async function getServerSideProps(context) {
       }
     }
   }
-  return {
-    props: {}
+  if (session) {
+
+    return {
+      props: {
+        session: {
+          ...session,
+          user: {
+            name: session.user.name || null,
+            email: session.user.email,
+            image: session.image || null
+          },
+          expires: session.expires,
+        }
+      }
+    }
   }
+
 }
 
 export default ProfilePage;

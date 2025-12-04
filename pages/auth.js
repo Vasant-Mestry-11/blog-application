@@ -4,14 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 function AuthPage() {
-  const { session, status } = useSession();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!session) {
-      router.replace("/")
-    }
-  }, [router, session])
+  const { status } = useSession();
 
   if (status === 'loading') {
     return <h3>loading</h3>
