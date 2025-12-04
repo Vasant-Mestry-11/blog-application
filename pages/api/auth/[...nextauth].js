@@ -8,6 +8,7 @@ export default NextAuth({
   session: {
     jwt: true,
   },
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     Providers({
       async authorize(credentials) {
@@ -31,7 +32,7 @@ export default NextAuth({
         }
 
         client.close();
-        
+
         return {
           email: user.email
         }
