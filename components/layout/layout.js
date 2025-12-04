@@ -6,12 +6,12 @@ import { SessionProvider } from 'next-auth/react';
 function Layout(props) {
   const { session } = props
   return (
-    <Fragment>
-      <SessionProvider session={session}>
+    <SessionProvider session={session}>
+      <Fragment>
         <MainNavigation />
         <main>{props.children}</main>
-      </SessionProvider>
-    </Fragment>
+      </Fragment>
+    </SessionProvider>
   );
 }
 
