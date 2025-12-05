@@ -6,14 +6,11 @@ import { getServerSession } from "next-auth";
 
 async function handler(req, res) {
 
-  if (req.method !== 'PATHC') {
+  if (req.method !== 'PATCH') {
     return;
   }
 
   const session = await getServerSession(req, res, authOptions)
-
-  console.log("===============", session);
-
 
   if (!session) {
     res.status(401).json({
@@ -44,13 +41,11 @@ async function handler(req, res) {
   const currentPassword = user.password;
 
   const passwordsAreEqual = await verifyPassword(oldPassword, currentPassword);
-
   if (!passwordsAreEqual) {
-    res.status(403).json({
+    client.close()
+    return res.status(403).json({
       message: 'Invalid Password.'
     })
-    client.close()
-    return
   }
 
   const hashedPassword = await hashPassword(newPassword)
@@ -65,7 +60,7 @@ async function handler(req, res) {
 
 
   client.close();
-  res.status(200).json({
+  return res.status(200).json({
     message: "Password updated!"
   })
 
