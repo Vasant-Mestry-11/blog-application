@@ -1,5 +1,5 @@
 import Layout from "@/components/layout/layout";
-import { SessionProvider, SessionContext } from 'next-auth/react'
+import { SessionProvider } from 'next-auth/react'
 import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
